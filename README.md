@@ -12,11 +12,12 @@
  The main goal of this project is to detect flooded areas using satellite images from the SEN12-FLOOD dataset, which comes from the Sentinel-2 satellite. Flood detection is really important because it helps reduce damage from natural disasters and allows for better early warning systems. Sentinel-2’s multispectral images contain detailed information about land surfaces, vegetation, and water, but these images can be tricky to analyze because they’re so complex. By focusing on just a few of the satellite’s spectral bands (Blue, Green, Red, and NIR), we can simplify the problem and more easily pinpoint flooded regions. The NIR (Near-Infrared) channel is useful because it can pass through thin clouds and is good at detecting plants and water. This makes it helpful for things like flood detection and classifying different types of land.
 
 <hr>
+
 ## Related Files
 
 | **Related Files**                                    | **Source**                                                                         |
 |------------------------------------------------------|------------------------------------------------------------------------------------|
-| Project work paper                                   | In this repository                                                                |
+| Documentation                                   | In this repository                                                                |
 | magellan.ipynb                                       | In this repository                                                                |
 | SEN12FLOOD.rar                                      | Google Drive: [SEN12FLOOD.rar](https://drive.google.com/file/d/1F5HYMFQyy5EfpAvPDDSg0cG1lVdm1O2y/view?usp=sharing)  |
 | PyTorch model (flood_model.tph)                      | Google Drive: [flood_model.tph](https://drive.google.com/file/d/12XxgFJ3EUggyMby4KaEDLtvDO0KcpJus/view?usp=sharing) |
@@ -29,16 +30,17 @@
 ## Data Processing and Model Development
 
 ### 1. Data Quality and Challenges
-The quality of the processed data significantly impacts model performance. The SEN12-FLOOD database, while comprehensive, does not always provide sufficient resolution and quality for flood detection. Contours of flooded areas are often blurred, and noise hampers analysis, making it challenging for advanced models to cluster classes accurately.
+The quality of the processed data significantly impacts model performance. The SEN12-FLOOD database, while comprehensive, does not always provide sufficient resolution and quality for flood detection. Contours of flooded areas are often blurred, and noise hampers analysis, making it challenging for advanced models to cluster classes accurately. This project focuses solely on Sentinel-2 optical data, which can be tricky to analyze due to its complexity, but provides detailed information about land surfaces, vegetation, and water. This approach is motivated by a major flood in Hungary earlier this year, underscoring the need for better detection systems.
 
 ### 2. Developing the Base Model
 The base model serves as the starting point for the project, illustrating fundamental principles of flood detection and providing a reference for further development. With its simpler architecture, it helps to:
 - Understand the data.
 - Measure augmentation impacts.
 - Determine directions for parameter tuning.
+In this case, the Keras-based baseline model demonstrated effective results, outperforming a more complex PyTorch model in terms of accuracy and precision.
 
 ### 3. Advanced Model and Its Limitations
-The advanced model incorporates modern techniques to optimize flood detection. However, its classification results fall short due to data quality and resolution issues, emphasizing the importance of data quality control.
+The advanced model incorporates modern techniques to optimize flood detection. However, its classification results fall short due to data quality and resolution issues, emphasizing the importance of data quality control. Despite its complexity, including techniques like input normalization and class balancing, the PyTorch model was outperformed by the simpler Keras model, suggesting that simplicity and careful design can be more effective in certain contexts.
 
 ### Key Evaluation Steps and Metrics
 
@@ -51,8 +53,27 @@ The advanced model incorporates modern techniques to optimize flood detection. H
 | **Relative Contribution Analysis** | - Quantification of average and standard deviation contributions for each spectral band.<br> - Identification of dominant bands (e.g., NIR).                                                                                                     |
 
 ### Additional Features
-- **Wandb Integration**: Logging is included but requires your own API key.
+- **Wandb Integration**: Logs metrics and tracks model performance across epochs.
+- **TensorBoard Integration**: Visualizes training progress and metrics for the Keras model in real time.
 - **Gradio Interface**: Allows testing the model on uploaded files with prediction results.
+  
+In this project, we leveraged **Wandb** for logging metrics, **TensorBoard** for visualizing training progress, and **Gradio** for an intuitive user interface, allowing for easy interaction with the model.
+
+### Model Evaluation and Comparison
+The project explores two models for flood detection:
+
+1. **Solution 1 (Keras Model)**: A simple CNN-based model using TensorFlow/Keras with integrated TensorBoard for real-time progress tracking.
+2. **Solution 2 (PyTorch Model)**: A more complex model using PyTorch Lightning with Wandb for logging metrics.
+
+Despite the additional complexity of the PyTorch model, the Keras model performed better, highlighting the importance of simplicity in certain cases.
+
+### Conclusion
+This project aimed to build machine learning models for flood detection using Sentinel-2 imagery, comparing a simpler Keras model with a more complex PyTorch model. Interestingly, the Keras model outperformed the PyTorch model across all metrics, achieving higher accuracy, precision, F1-scores, and AUC (0.77 vs. 0.50). Despite incorporating advanced techniques like class balancing, dropout, and normalization, the PyTorch model didn’t perform as well as expected, likely due to insufficient fine-tuning.
+
+One major limitation was the time available to fine-tune the PyTorch model. With more time, better hyperparameter optimization, improved normalization, and enhanced data augmentation, the PyTorch model has the potential to surpass the Keras model. These improvements, along with further experimentation to refine the architecture, would be key steps if we continued this project.
+
+While the PyTorch model struggled in this case, the Keras model provided a reliable and practical solution for flood detection, demonstrating that simplicity and careful design can often deliver strong results. Still, the lessons learned from this project offer promising directions for future work and optimization.
+
 
 
 <hr>
