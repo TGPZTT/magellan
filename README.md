@@ -27,7 +27,7 @@
 | Docker image (1st milestone_RAW)                      | DockerHub: [1st milestone_RAW](https://hub.docker.com/repository/docker/tgpztt/magellan_raw/general) |
 | Docker image (1st milestone_processed)                | DockerHub: [1st milestone_processed](https://hub.docker.com/repository/docker/tgpztt/magellan/general) |
 | Docker image (2nd milestone)                          | DockerHub: [2nd milestone](https://hub.docker.com/repository/docker/tgpztt/magellan_milestone2) |
-| Docker image (Final)                                  | DockerHub: [final](https://hub.docker.com/repository/docker/tgpztt/magellan_milestone2)                                                                    |
+| Docker image (Final)                                  | DockerHub: [final](https://hub.docker.com/repository/docker/tgpztt/magellan_final/general)  |
 
 ## Data Processing and Model Development
 
@@ -46,7 +46,7 @@ After upgrading this model achieved robust results, outperforming the more compl
 The advanced model, implemented in PyTorch, aimed to improve flood detection through modern techniques such as input normalization, class balancing, and dropout regularization. Despite these enhancements, its performance fell short compared to the baseline model. This outcome underscores the importance of fine-tuning and data quality in achieving effective results. The PyTorch model’s complexity may have introduced challenges in fully leveraging the dataset within the time constraints of this project. Nonetheless, with better data quality, optimized hyperparameters, and additional refinement, the advanced model holds significant potential for superior performance in the future.
 
 
-### Key Evaluation Steps and Metrics
+### Key Analysis and Evaluation Steps and Metrics
 
 | **Evaluation Steps**             | **Details**                                                                                                                                                                                                                                      |
 |----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
