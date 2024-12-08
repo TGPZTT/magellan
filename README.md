@@ -18,7 +18,7 @@
 | **Related Files**                                    | **Source**                                                                         |
 |------------------------------------------------------|------------------------------------------------------------------------------------|
 | Documentation                                   | In this repository                                                                |
-| magellan.ipynb                                       | In this repository                                                                |
+| Magellan.ipynb                                       | In this repository                                                                |
 | SEN12FLOOD.rar                                      | Google Drive: [SEN12FLOOD.rar](https://drive.google.com/file/d/1F5HYMFQyy5EfpAvPDDSg0cG1lVdm1O2y/view?usp=sharing)  |
 | PyTorch model (flood_model.tph)                      | Google Drive: [flood_model.tph](https://drive.google.com/file/d/12XxgFJ3EUggyMby4KaEDLtvDO0KcpJus/view?usp=sharing) |
 | Keras model (magellan_model_keras.keras)              | Google Drive: [magellan_model_keras.keras](https://drive.google.com/file/d/1-qDnHM7KCe3EIREtG4u-oWiA5B_ivy1N/view?usp=sharing) |
