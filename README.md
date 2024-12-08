@@ -32,17 +32,18 @@
 ## Data Processing and Model Development
 
 ### 1. Data Quality and Challenges
-The quality of the processed data significantly impacts model performance. The SEN12-FLOOD database, while comprehensive, does not always provide sufficient resolution and quality for flood detection. Contours of flooded areas are often blurred, and noise hampers analysis, making it challenging for advanced models to cluster classes accurately. This project focuses solely on Sentinel-2 optical data, which can be tricky to analyze due to its complexity, but provides detailed information about land surfaces, vegetation, and water. This approach is motivated by a major flood in Hungary earlier this year, underscoring the need for better detection systems.
+The quality of the processed data is a critical factor in determining model performance. The SEN12-FLOOD database, while comprehensive, presents challenges such as blurred flood contours and significant noise, which complicate the task of distinguishing flooded areas. This project focuses exclusively on Sentinel-2 optical data due to its rich detail on land surfaces, vegetation, and water. However, the inherent complexity of this data makes it difficult for models to extract meaningful features. 
 
-### 2. Developing the Base Model
-The base model serves as the starting point for the project, illustrating fundamental principles of flood detection and providing a reference for further development. With its simpler architecture, it helps to:
+### 2. Developing the Baseline Model
+The baseline model, built using Keras, provided a strong foundation for the project by illustrating core flood detection principles and serving as a reference for further development. With its simpler architecture, the baseline model allowed us to:
 - Understand the data.
-- Measure augmentation impacts.
-- Determine directions for parameter tuning.
-In this case, the Keras-based baseline model demonstrated effective results, outperforming a more complex PyTorch model in terms of accuracy and precision.
+- Measure the effects of data augmentation.
+- Identify key directions for model refinement.
+After upgrading this model achieved robust results, outperforming the more complex PyTorch model in metrics such as accuracy and precision. Its performance highlights that simplicity, paired with iterative improvements, can often yield better results than more intricate designs.
 
-### 3. Advanced Model and Its Limitations
-The advanced model incorporates modern techniques to optimize flood detection. However, its classification results fall short due to data quality and resolution issues, emphasizing the importance of data quality control. Despite its complexity, including techniques like input normalization and class balancing, the PyTorch model was outperformed by the simpler Keras model, suggesting that simplicity and careful design can be more effective in certain contexts.
+### 3. Advanced Model with more consiferations
+The advanced model, implemented in PyTorch, aimed to improve flood detection through modern techniques such as input normalization, class balancing, and dropout regularization. Despite these enhancements, its performance fell short compared to the baseline model. This outcome underscores the importance of fine-tuning and data quality in achieving effective results. The PyTorch model’s complexity may have introduced challenges in fully leveraging the dataset within the time constraints of this project. Nonetheless, with better data quality, optimized hyperparameters, and additional refinement, the advanced model holds significant potential for superior performance in the future.
+
 
 ### Key Evaluation Steps and Metrics
 
