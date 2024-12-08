@@ -1,56 +1,47 @@
-﻿This project focuses on the processing of Sentinel-2 satellite imagery from the SEN12-FLOOD database and flood detection. Four spectral bands are used for processing: Band2 (blue), Band3 (green), Band4 (red) and Band8 (near-infrared). These bands are of particular importance for distinguishing land, water and other surface features. Throughout the project, special attention was paid to data organisation, filtering out blank images and band alignment to provide a suitable basis for flood detection tasks.
+# Magellan
+**Automated Flood Detection Using Satellite Images**  
+**Budapest University of Technology and Economics (BME)**
+
+## Team Name:
+**Magellan**
+
+## Team Members:
+- **Tóth Ádám László** (ID: TK6NT3)
+- **Szladek Máté Nándor** (ID: TGPZTT)
+
+ This project focuses on the processing of Sentinel-2 satellite imagery from the SEN12-FLOOD database and flood detection. Four spectral bands are used for processing: Band2 (blue), Band3 (green), Band4 (red) and Band8 (near-infrared). These bands are of particular importance for distinguishing land, water and other surface features. Throughout the project, special attention was paid to data organisation, filtering out blank images and band alignment to provide a suitable basis for flood detection tasks.
+<hr>
 
 ## Data Processing and Model Development
-1. **Data quality and challenges**
 
-The quality of the processed data has a significant impact on model performance. The SEN12-FLOOD database, although a comprehensive source, does not always provide sufficient resolution and quality for flood detection. The contours of the flooded areas are often blurred or other noise factors hamper the analysis. As a result, even advanced models have difficulty in accurately clustering individual classes.
+### 1. Data Quality and Challenges
+The quality of the processed data significantly impacts model performance. The SEN12-FLOOD database, while comprehensive, does not always provide sufficient resolution and quality for flood detection. Contours of flooded areas are often blurred, and noise hampers analysis, making it challenging for advanced models to cluster classes accurately.
 
-1. **Developing the base model**
+### 2. Developing the Base Model
+The base model serves as the starting point for the project, illustrating fundamental principles of flood detection and providing a reference for further development. With its simpler architecture, it helps to:
+- Understand the data.
+- Measure augmentation impacts.
+- Determine directions for parameter tuning.
 
-The basic model we have developed serves as one of the main starting points for the project. The purpose of the basic model is to illustrate the basic operating principle of the flood detection task and to serve as a reference for further development. The basic model, with its simpler architecture, will help to understand the data, measure the impact of augmentations, and determine the direction of parameter tuning.
+### 3. Advanced Model and Its Limitations
+The advanced model incorporates modern techniques to optimize flood detection. However, its classification results fall short due to data quality and resolution issues, emphasizing the importance of data quality control.
 
-1. **Advanced model and its limitations**
+### Key Evaluation Steps and Metrics
 
-Following the basic model, a more advanced model has been implemented that uses more modern algorithms and techniques to optimize flood detection. Although the new model is more comprehensive and robust in several aspects, the classification results did not reach the desired level due to the poor quality of the data and the low resolution. This highlights the fact that preliminary data quality control and improvement is a key factor for the project.
+| **Evaluation Steps**             | **Details**                                                                                                                                                                                                                                      |
+|----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Spectral Band Statistics**     | - Mean and Normalized Standard Deviation (Mean_Std).<br> - Standard Deviation (Std_Dev) and Normalized Standard Deviation (Std_Dev_Std).<br> - Mean Contribution (Mean_Contribution).<br> - Standard Deviation-Based Contribution (Std_Contribution). |
+| **Class Distribution Analysis**  | - Distribution of data classes: CLEAR and FLOODED.<br> - Class balance assessment with sample proportions.                                                                                                                                       |
+| **Visualizations**               | - Pie Chart: Spectral band contributions (Blue, Green, Red, NIR).<br> - Confusion Matrix: Classification performance.<br> - ROC Curve: Classification evaluation.<br> - PR Curve: Precision and sensitivity comparison.                          |
+| **Performance Metrics**          | - Accuracy<br> - Precision<br> - Recall<br> - F1-score<br> - Class-specific summaries                                                                                                                                                            |
+| **Relative Contribution Analysis** | - Quantification of average and standard deviation contributions for each spectral band.<br> - Identification of dominant bands (e.g., NIR).                                                                                                     |
 
-As part of the project, several evaluation and data analysis steps were carried out, for which graphs were produced. These are shown in the attached document
+### Additional Features
+- **Wandb Integration**: Logging is included but requires your own API key.
+- **Gradio Interface**: Allows testing the model on uploaded files with prediction results.
 
-**1. Spectral Band Statistics:**
 
-- **Mean** and **normalized standard deviation (Mean\_Std)**.
-- **Standard deviation (Std\_Dev)** and **normalized standard deviation (Std\_Dev\_Std)**.
-- **Mean contribution (Mean\_Contribution)** to the dataset.
-- **Standard deviation-based contribution (Std\_Contribution)**.
-
-**2. Class Distribution and Sample Analysis:**
-
-- Distribution of data classes: CLEAR and FLOODED.
-- Class balance assessment: calculation of the proportion of samples per class.
-
-**3. Visualizations:**
-
-- **Pie chart** showing contribution ratios of spectral bands (Blue, Green, Red, NIR).
-- **Confusion matrix** illustrating classification performance.
-- **ROC curve (Receiver Operating Characteristic)** for evaluating classification performance.
-- **AUC (Area Under Curve)**: the area under the ROC curve to assess model accuracy.
-- **Precision-Recall curve (PR Curve)** to compare model sensitivity and precision.
-
-**4. Model Performance Metrics:**
-
-- **Accuracy**.
-- **Precision**.
-- **Recall**.
-- **F1-score**.
-- Class-specific metrics and summaries.
-
-**5. Relative Contribution Analysis:**
-
-- Quantification of average and standard deviation-based contributions of each spectral band.
-- Identification of dominant bands (e.g., NIR).
-
-**Wandb feature is also added but you have to use your own API key to see the telemetrics.**
-
-**Gradio is also added, so you can test the model on a chosen file that you can upload and see the prediction result.** 
+<hr>
 
 ### How to run
 The repository contains four Docker Hub links:
@@ -67,37 +58,39 @@ DockerHub public links:
 - [Magellan](https://hub.docker.com/repository/docker/tgpztt/magellan/general)
 - [Magellan_Milestone2](https://hub.docker.com/repository/docker/tgpztt/magellan_milestone2) (contains baseline model, augmentation, JSON filtering)
 
-How to Run the Project
 
-A: Docker image (cross-platform)
 
-B. Data preparation
+# Project Instructions - How to Run the Project
 
-C: For training
+| **Step** | **Title**              | **Instructions** |
+|----------|-------------------------|-------------------|
+| **A**    | **Docker Image (Cross-Platform)** | **To Run the Project**:<br><br>1. **Pull the chosen Docker Image:**<br>Use the following command to pull the desired Docker image from Docker Hub:<br><br>`docker pull tgpztt/magellan_milestone2:latest`<br><br>2. **Run the Docker Container:**<br>Execute the following command to run the Docker image, ensuring to map port 8888 for Jupyter Notebook access:<br><br>`docker run -p 8888:8888 tgpztt/magellan_milestone2:latest`<br><br>3. **Access Jupyter Notebook:**<br>Once the co...
+| **B**    | **Data Preparation**    | 1. Download the dataset from the IEEE website (link is in the "Related Work and Papers" section).<br><br>2. Download `final.ipynb` file from this repository.<br><br>3. Ensure that the downloaded dataset and the `.ipynb` file are in the same folder.<br><br>4. Open `final.ipynb` and run the first blocks. Instructions are provided in the markdown cells within the notebook. |
+| **C**    | **For Training**        | 1. Download the prepared dataset from this repository.<br><br>2. Download `final.ipynb` file from this repository.<br><br>3. Ensure that the `.ipynb` file and the `SEN12FLOOD` folder (containing 2037 subfolders and JSON files) are in the same folder.<br><br>4. Open `final.ipynb` and run the block after the **"Model"** title. Instructions are provided in the markdown cells within the notebook. |
+| **D**    | **For Evaluating**      | 1. Download the model file (`flood_model.pth`) from this repository.<br><br>2. Download `final.ipynb` file from this repository.<br><br>3. Ensure that the `.ipynb` file and the model file are in the same folder.<br><br>4. Open `final.ipynb` and run the block after the **"Eval"** title. Instructions are provided in the markdown cells within the notebook. |
 
-D: For evaluating
+---
 
-B, C, D steps are using the same magellan.ipynb file. You can run all the tasks above if you have generated or downloaded the files needed. 
+**Note:**<br>
+B, C, and D steps are using the same `magellan.ipynb` file. You can run all the tasks above if you have generated or downloaded the files needed.<br>
+If you are using B, C, or D methods, be sure you have installed the required packages!
 
-If you are using B,C or D method, be sure you have installed the required packages!
+<hr>
 
-|<p>**A.**</p><p></p><p>To run the project, follow these steps. The code part is for the 2th milestone, but can be changed according to the required project. (Docker Hub site contains the needed code)</p><p>1. **Pull the chosen Docker Image:**</p><p>Use the following command to pull the desired Docker image from Docker Hub:</p><p>docker pull tgpztt/magellan\_milestone2:latest</p><p>2. **Run the Docker Container:**</p><p>Execute the following command to run the Docker image, ensuring to map port 8888 for Jupyter Notebook access:</p><p>docker run -p 8888:8888 tgpztt/magellan\_milestone2:latest</p><p>3. **Access Jupyter Notebook:**</p><p>Once the container is running, open your web browser and navigate to:</p><p>http://localhost:8888</p><p>You should see the Jupyter Notebook interface.</p><p>4. **Open and Run the Notebook:**</p><p>In the Jupyter Notebook interface, locate and open the Magellan.ipynb file. You can now run the cells in the notebook, as all required dependencies are pre-installed in the Docker image.</p><p></p>|
-| :- |
-|<p>**B.**</p><p></p><p>Download the dataset from IEEE website (link is in the Related Work and Papers section)</p><p></p><p>Download final.ipynb file from this repository</p><p></p><p>The ipynb file and the downloaded dataset should be in the same folder!</p><p></p><p>Open final.ipynb and run the first blocks. The needed markdown is added, so you will know what to run.</p>|
-|<p>**C.**</p><p></p><p>Download the prepared dataset from this repository.</p><p>Download final.ipynb file from this repository</p><p>The ipynb file and SEN12FLOOD folder (containing 2037 subfolder and json files) should be in the same folder!</p><p></p><p>Open final.ipynb and run the block after the „Model” title. The needed markdown is added, so you will know what to run.</p><p></p>|
-|<p>**D.** </p><p></p><p>Download the model file (flood\_model.pth) from this repository.</p><p>Download final.ipynb file from this repository</p><p>The ipynb file and the model file should be in the same folder!</p><p></p><p>Open final.ipynb and run the block after the „Eval” title. The needed markdown is added, so you will know what to run.</p><p></p>|
+# Running environment and components
 
-## Running environment and components
 
-|**Component**|**Description**|
-| :- | :- |
-|**Programming Language**|Python 3.11.5|
-|**Jupyter Notebook**|Jupyter Notebook is used for interactive data processing and analysis. If you have pulled the docker file it runs on port 8888.|
-|**Dependencies**|<p>**File and Directory Management**</p><p>- **os** - File and directory operations.</p><p>- **shutil** - File manipulation (e.g., copy, move, delete).</p><p>- **json** - Reading and writing JSON files.</p><p>-----</p><p>**Data Manipulation**</p><p>- **numpy** - Numerical computations and array manipulation.</p><p>- **pandas** - Dataframe and tabular data handling.</p><p>- **random** - Random number generation.</p><p>-----</p><p>**Image Handling and Processing**</p><p>- **cv2** - Image processing and computer vision.</p><p>- **Pillow [Image]** - Opening and manipulating image files.</p><p>- **tifffile** - Handling TIFF image files.</p><p>-----</p><p>**Visualization**</p><p>- **matplotlib.pyplot** - General-purpose plotting and visualization.</p><p>- **seaborn** - Statistical data visualization.</p><p>-----</p><p>**Deep Learning (PyTorch Ecosystem)**</p><p>- **torch** - Core library for tensors and models.</p><p>- **torch.nn.functional [F]** - Functional utilities for neural networks.</p><p>- **torchvision** - Pre-trained models, datasets, and transforms.</p><p>- **torch.utils.data [WeightedRandomSampler]** - Weighted sampling for datasets.</p><p>- **torchmetrics** - Metrics for model evaluation.</p><p>- **pytorch\_lightning** - High-level PyTorch training abstraction.</p><p>- **pytorch\_lightning.callbacks [EarlyStopping]** - Early stopping callback.</p><p>- **pytorch\_lightning [Trainer]** - Manages PyTorch training loops.</p><p>-----</p><p>**Deep Learning (TensorFlow and Keras Ecosystem)**</p><p>- **tensorflow** - Core library for deep learning.</p><p>- **tensorflow.keras.models [Sequential]** - Model building.</p><p>- **tensorflow.keras.layers** - Includes [Dense], [Conv2D], [MaxPool2D], [Flatten], and [Dropout] for neural network layers.</p><p>- **tensorflow.keras.preprocessing.image [ImageDataGenerator]** - Data augmentation.</p><p>- **tensorflow.keras.optimizers [Adam]** - Adam optimizer.</p><p>- **tensorflow.keras.utils [plot\_model]** - Visualize model architecture.</p><p>-----</p><p>**Machine Learning Metrics**</p><p>- **sklearn.metrics** - Includes [classification\_report], [confusion\_matrix], [roc\_curve], [auc], [precision\_recall\_curve], and [average\_precision\_score] for evaluating model performance.</p><p>-----</p><p>**Experiment Tracking and Interface**</p><p>- **wandb** - Experiment tracking and visualization.</p><p>- **gradio** - Build user interfaces for machine learning models.</p><p></p>|
-|**Application Purpose**|This project involves geospatial data processing and flood detection, relying on raster data manipulation, image augmentation, and a baseline model for flood classification.|
-|**Project Access**|If you have pulled a Docker image, the Jupyter Notebook environment is accessed through a web browser at http://localhost:8888.|
-|**Warning**|**Do not install any additional software or dependencies** within the environment, as everything needed is already pre-installed in the Docker image.|
+|              | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                 |
+|----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Programming Language**   | Python 3.11.5                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| **Jupyter Notebook**       | Jupyter Notebook is used for interactive data processing and analysis. If you have pulled the docker file it runs on port 8888.                                                                                                                                                                                                                                                                                               |
+| **Dependencies**           | **_File and Directory Management_**<br> - `os` - File and directory operations.<br> - `shutil` - File manipulation (e.g., copy, move, delete).<br> - `json` - Reading and writing JSON files.<br><br> **_Data Manipulation_**<br> - `numpy` - Numerical computations and array manipulation.<br> - `pandas` - Dataframe and tabular data handling.<br> - `random` - Random number generation.<br><br> **_Image Handling and Processing_**<br> - `cv2` - Image processing and computer vision.<br> - `Pillow [Image]` - Opening and manipulating image files.<br> - `tifffile` - Handling TIFF image files.<br><br> **_Visualization_**<br> - `matplotlib.pyplot` - General-purpose plotting and visualization.<br> - `seaborn` - Statistical data visualization.<br><br> **_Deep Learning (PyTorch Ecosystem)_**<br> - `torch` - Core library for tensors and models.<br> - `torch.nn.functional [F]` - Functional utilities for neural networks.<br> - `torchvision` - Pre-trained models, datasets, and transforms.<br> - `torch.utils.data [WeightedRandomSampler]` - Weighted sampling for datasets.<br> - `torchmetrics` - Metrics for model evaluation.<br> - `pytorch_lightning` - High-level PyTorch training abstraction.<br> - `pytorch_lightning.callbacks [EarlyStopping]` - Early stopping callback.<br> - `pytorch_lightning [Trainer]` - Manages PyTorch training loops.<br><br> **_Deep Learning (TensorFlow and Keras Ecosystem)_**<br> - `tensorflow` - Core library for deep learning.<br> - `tensorflow.keras.models [Sequential]` - Model building.<br> - `tensorflow.keras.layers` - Includes `[Dense]`, `[Conv2D]`, `[MaxPool2D]`, `[Flatten]`, and `[Dropout]` for neural network layers.<br> - `tensorflow.keras.preprocessing.image [ImageDataGenerator]` - Data augmentation.<br> - `tensorflow.keras.optimizers [Adam]` - Adam optimizer.<br> - `tensorflow.keras.utils [plot_model]` - Visualize model architecture.<br><br> **_Machine Learning Metrics_**<br> - `sklearn.metrics` - Includes `[classification_report]`, `[confusion_matrix]`, `[roc_curve]`, `[auc]`, `[precision_recall_curve]`, and `[average_precision_score]` for evaluating model performance.<br><br> **_Experiment Tracking and Interface_**<br> - `wandb` - Experiment tracking and visualization.<br> - `gradio` - Build user interfaces for machine learning models. |
+| **Application Purpose**    | This project involves geospatial data processing and flood detection, relying on raster data manipulation, image augmentation, and a baseline model for flood classification.                                                                                                                                                                                                                                                   |
+| **Project Access**         | If you have pulled a Docker image, the Jupyter Notebook environment is accessed through a web browser at [http://localhost:8888](http://localhost:8888).                                                                                                                                                                                                                                                                       |
+| **Warning**                | **Do not install any additional software or dependencies** within the environment, as everything needed is already pre-installed in the Docker image.                                                                                                                                                                                                                                                                         |
 
+
+<hr>
 
 **Related Works and Papers:**
 
