@@ -9,8 +9,22 @@
 - **Tóth Ádám László** (ID: TK6NT3)
 - **Szladek Máté Nándor** (ID: TGPZTT)
 
- This project focuses on the processing of Sentinel-2 satellite imagery from the SEN12-FLOOD database and flood detection. Four spectral bands are used for processing: Band2 (blue), Band3 (green), Band4 (red) and Band8 (near-infrared). These bands are of particular importance for distinguishing land, water and other surface features. Throughout the project, special attention was paid to data organisation, filtering out blank images and band alignment to provide a suitable basis for flood detection tasks.
+ The main goal of this project is to detect flooded areas using satellite images from the SEN12-FLOOD dataset, which comes from the Sentinel-2 satellite. Flood detection is really important because it helps reduce damage from natural disasters and allows for better early warning systems. Sentinel-2’s multispectral images contain detailed information about land surfaces, vegetation, and water, but these images can be tricky to analyze because they’re so complex. By focusing on just a few of the satellite’s spectral bands (Blue, Green, Red, and NIR), we can simplify the problem and more easily pinpoint flooded regions. The NIR (Near-Infrared) channel is useful because it can pass through thin clouds and is good at detecting plants and water. This makes it helpful for things like flood detection and classifying different types of land.
+
 <hr>
+## Related Files
+
+| **Related Files**                                    | **Source**                                                                         |
+|------------------------------------------------------|------------------------------------------------------------------------------------|
+| Project work paper                                   | In this repository                                                                |
+| magellan.ipynb                                       | In this repository                                                                |
+| SEN12FLOOD.rar                                      | Google Drive: [SEN12FLOOD.rar](https://drive.google.com/file/d/1F5HYMFQyy5EfpAvPDDSg0cG1lVdm1O2y/view?usp=sharing)  |
+| PyTorch model (flood_model.tph)                      | Google Drive: [flood_model.tph](https://drive.google.com/file/d/12XxgFJ3EUggyMby4KaEDLtvDO0KcpJus/view?usp=sharing) |
+| Keras model (magellan_model_keras.keras)              | Google Drive: [magellan_model_keras.keras](https://drive.google.com/file/d/1-qDnHM7KCe3EIREtG4u-oWiA5B_ivy1N/view?usp=sharing) |
+| Docker image (1st milestone_RAW)                      | DockerHub: [1st milestone_RAW](https://hub.docker.com/repository/docker/tgpztt/magellan_raw/general) |
+| Docker image (1st milestone_processed)                | DockerHub: [1st milestone_processed](https://hub.docker.com/repository/docker/tgpztt/magellan/general) |
+| Docker image (2nd milestone)                          | DockerHub: [2nd milestone](https://hub.docker.com/repository/docker/tgpztt/magellan_milestone2) |
+| Docker image (Final)                                  | DockerHub: TBD                                                                    |
 
 ## Data Processing and Model Development
 
@@ -52,28 +66,19 @@ Data is not accessible without authentication, and no in-code authentication is 
 
 The file operations are platform independent, so the image file can be downloaded and run on a windows system without any permission. 
 
-DockerHub public links:
-
-- [Magellan_RAW](https://hub.docker.com/repository/docker/tgpztt/magellan_raw/general)
-- [Magellan](https://hub.docker.com/repository/docker/tgpztt/magellan/general)
-- [Magellan_Milestone2](https://hub.docker.com/repository/docker/tgpztt/magellan_milestone2) (contains baseline model, augmentation, JSON filtering)
-
 
 
 # Project Instructions - How to Run the Project
 
-| **Step** | **Title**              | **Instructions** |
-|----------|-------------------------|-------------------|
-| **A**    | **Docker Image (Cross-Platform)** | **To Run the Project**:<br><br>1. **Pull the chosen Docker Image:**<br>Use the following command to pull the desired Docker image from Docker Hub:<br><br>`docker pull tgpztt/magellan_milestone2:latest`<br><br>2. **Run the Docker Container:**<br>Execute the following command to run the Docker image, ensuring to map port 8888 for Jupyter Notebook access:<br><br>`docker run -p 8888:8888 tgpztt/magellan_milestone2:latest`<br><br>3. **Access Jupyter Notebook:**<br>Once the co...
-| **B**    | **Data Preparation**    | 1. Download the dataset from the IEEE website (link is in the "Related Work and Papers" section).<br><br>2. Download `final.ipynb` file from this repository.<br><br>3. Ensure that the downloaded dataset and the `.ipynb` file are in the same folder.<br><br>4. Open `final.ipynb` and run the first blocks. Instructions are provided in the markdown cells within the notebook. |
-| **C**    | **For Training**        | 1. Download the prepared dataset from this repository.<br><br>2. Download `final.ipynb` file from this repository.<br><br>3. Ensure that the `.ipynb` file and the `SEN12FLOOD` folder (containing 2037 subfolders and JSON files) are in the same folder.<br><br>4. Open `final.ipynb` and run the block after the **"Model"** title. Instructions are provided in the markdown cells within the notebook. |
-| **D**    | **For Evaluating**      | 1. Download the model file (`flood_model.pth`) from this repository.<br><br>2. Download `final.ipynb` file from this repository.<br><br>3. Ensure that the `.ipynb` file and the model file are in the same folder.<br><br>4. Open `final.ipynb` and run the block after the **"Eval"** title. Instructions are provided in the markdown cells within the notebook. |
+| **Step** | **Title**                  | **Instructions** |
+|----------|----------------------------|-------------------|
+| **A**    | **Docker Image (Cross-Platform)** | 1. **Pull the Docker Image**:<br>Use the following command to pull the required Docker image from Docker Hub:<br><br>`docker pull tgpztt/magellan_final:latest`<br><br>2. **Run the Docker Container**:<br>Execute the following command to run the Docker image, ensuring to map port 8888 for Jupyter Notebook access:<br><br>`docker run -p 8888:8888 tgpztt/magellan_final:latest`<br><br>3. **Access Jupyter Notebook**:<br>Once the container is running, open your browser and navigate to:<br><br>[http://localhost:8888](http://localhost:8888)<br><br>If prompted for a token, copy it from the terminal output. |
+| **B**    | **Data Preparation**       | 1. **Download the Dataset**:<br>Obtain the dataset from the IEEE website (link is in the "Related Work and Papers" section).<br><br>2. **Obtain the Notebook**:<br>Download the `magellan.ipynb` file from this repository.<br><br>3. **Organize Files**:<br>Ensure that the dataset and the `.ipynb` file are in the same folder.<br><br>4. **Run Preprocessing**:<br>Open `magellan.ipynb` and execute the initial cells to preprocess the dataset. Detailed instructions are provided in the markdown cells. |
+| **C**    | **For Training**           | 1. **Download the Dataset**:<br>Ensure the `SEN12FLOOD` folder (containing subfolders and JSON files) is prepared.<br><br>2. **Download the Notebook**:<br>Obtain `magellan.ipynb` from this repository.<br><br>3. **Organize Files**:<br>Place the `SEN12FLOOD` folder and the `.ipynb` file in the same directory.<br><br>4. **Run Training**:<br>Open `magellan.ipynb` and execute the block under the **"Model"** section. Instructions are in the markdown cells. |
+| **D**    | **For Evaluation**         | 1. **Download Pre-Trained Models**:<br>Obtain `flood_model.pth` from this repository.<br><br>2. **Download the Notebook**:<br>Obtain `magellan.ipynb` from this repository.<br><br>3. **Organize Files**:<br>Place the `.ipynb` file and the model file in the same folder.<br><br>4. **Run Evaluation**:<br>Open `magellan.ipynb` and execute the blocks under the **"Eval"** section. Detailed instructions are provided in the markdown cells. |
 
----
 
-**Note:**<br>
-B, C, and D steps are using the same `magellan.ipynb` file. You can run all the tasks above if you have generated or downloaded the files needed.<br>
-If you are using B, C, or D methods, be sure you have installed the required packages!
+
 
 <hr>
 
