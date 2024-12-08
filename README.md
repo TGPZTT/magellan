@@ -61,7 +61,7 @@ The advanced model, implemented in PyTorch, aimed to improve flood detection thr
 - **TensorBoard Integration**: Visualizes training progress and metrics for the Keras model in real time.
 - **Gradio Interface**: Allows testing the model on uploaded files with prediction results.
   
-In this project, we leveraged **Wandb** for logging metrics, **TensorBoard** for visualizing training progress, and **Gradio** for an intuitive user interface, allowing for easy interaction with the model.
+In this project, we used **Wandb** and **TensorBoard** for visualizing training progress, and **Gradio** for an intuitive user interface, allowing for easy interaction with the model.
 
 ### Model Evaluation and Comparison
 The project explores two models for flood detection:
