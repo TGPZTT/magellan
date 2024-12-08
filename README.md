@@ -29,7 +29,7 @@
 | Docker image (2nd milestone)                          | DockerHub: [2nd milestone](https://hub.docker.com/repository/docker/tgpztt/magellan_milestone2) |
 | Docker image (Final)                                  | DockerHub: [final](https://hub.docker.com/repository/docker/tgpztt/magellan_final/general)  |
 
-LLM was used for debugging and text generation.
+LLM was used for minor debugging and text generation.
 
 ## Data Processing and Model Development
 
