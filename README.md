@@ -69,7 +69,6 @@ The project explores two models for flood detection:
 1. **Solution 1 (Keras Model)**: A simple CNN-based model using TensorFlow/Keras with integrated TensorBoard for real-time progress tracking.
 2. **Solution 2 (PyTorch Model)**: A more complex model using PyTorch Lightning with Wandb for logging metrics.
 
-Despite the additional complexity of the PyTorch model, the Keras model performed better, highlighting the importance of simplicity in certain cases.
 
 ### Conclusion
 The goal of this project was to first define a strong baseline model for flood detection using Sentinel-2 imagery and then build a more advanced model to improve upon it. Our initial baseline, built with Keras, evolved into a highly effective solution as we refined it through further tuning and data engineering. Meanwhile, we designed a more complex PyTorch model incorporating advanced techniques such as class balancing, normalization, and dropout. Although the PyTorch model did not outperform the improved Keras baseline, this result highlights potential areas for further exploration rather than the limitations of the approach itself.
@@ -81,13 +80,11 @@ While the PyTorch model struggled in this case, the Keras model provided a relia
 <hr>
 
 ### How to run
-The repository contains four Docker Hub links:
 
-The first one describes data processing. The first one shows the first one, which contains the original data. The first one is the original data. Due to the size of the data, the other DockerHub images contain only the processed, carefully selected data.
+Original data is not accessible without authentication, and no in-code authentication is implemented. Data can be accessed after free registration (without any permission), but due to the free accessibility, data is inside the image file.
+Processed data is inside SEN12FLOOD.rar
 
-Data is not accessible without authentication, and no in-code authentication is enabled. Data can be accessed after free registration (without any permission), but due to the free accessibility, data is inside the image file.
-
-The file operations are platform independent, so the image file can be downloaded and run on a windows system without any permission. 
+The file operations are platform independent, so the image file can be downloaded and run on a Windows system without any permission. 
 
 
 
