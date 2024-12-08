@@ -39,6 +39,7 @@ The baseline model, built using Keras, provided a strong foundation for the proj
 - Understand the data.
 - Measure the effects of data augmentation.
 - Identify key directions for model refinement.
+
 After upgrading this model achieved robust results, outperforming the more complex PyTorch model in metrics such as accuracy and precision. Its performance highlights that simplicity, paired with iterative improvements, can often yield better results than more intricate designs.
 
 ### 3. Advanced Model with more consiferations
